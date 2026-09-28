@@ -6,7 +6,7 @@
 > **Última actualización:** 2026-09-04  
 > **Estado:** Vigente; sustituye operativamente a los documentos 01, 02, 03 y 04
 
-----
+-----
 
 ## ÍNDICE
 
