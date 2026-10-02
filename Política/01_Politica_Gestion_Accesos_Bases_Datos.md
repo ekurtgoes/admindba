@@ -26,11 +26,11 @@
 
 ## 1. OBJETIVO Y ALCANCE
 
-Esta política establece cómo se solicitan, aprueban, implementan, monitorean y revocan los accesos a bases de datos, Cloud SQL, BigQuery y demás plataformas de datos institucionales.
+Esta política establece cómo se solicitan, aprueban, implementan, monitorean y revocan los accesos a bases de datos Cloud SQL, proyectos BigQuery y demás plataformas de datos institucionales.
 
 Aplica a:
 
-- Personal interno: DBA, DevOps, desarrolladores, QA, BI, analistas, seguridad y auditores.
+- Personal interno: DBA, DevOps, desarrolladores, QA, analistas BI/BA, expertos en seguridad y auditores.
 - Aplicaciones y procesos automatizados mediante cuentas de servicio.
 - Proveedores externos, consultores, soporte de fabricantes y auditores contratados.
 - Ambientes DEV, QA/UAT y PRODUCCIÓN.
@@ -48,11 +48,12 @@ Cada identidad recibe únicamente los permisos necesarios para una función, obj
 
 ### 2.2 Necesidad de conocer
 
-El acceso a datos se concede según la responsabilidad del solicitante y la clasificación del dato. Los datos sensibles, personales, médicos o regulados requieren controles reforzados y acceso limitado.
+El acceso a datos se concede según la responsabilidad del solicitante y la clasificación del dato. Los datos sensibles o regulados requieren controles reforzados y acceso limitado.
 
 ### 2.3 Separación de funciones
 
 La persona que solicita un acceso no debe aprobarlo ni implementarlo. La administración de permisos debe estar separada del desarrollo, la operación y el consumo de datos.
+(*Sugerencia del lector:* Debe quedar explícito que le concierne al equipo de DBA estas asignaciones y que debe ajustarse desde el servicio IAM)
 
 ### 2.4 Identidad individual y trazable
 
@@ -68,10 +69,12 @@ Los accesos temporales deben tener fecha de expiración automática. Todo acceso
 ### 2.6 Trazabilidad
 
 Toda solicitud, aprobación, modificación, consulta administrativa, exportación y cambio de privilegios debe poder asociarse con una identidad, ticket, sistema, ambiente y fecha.
+(*Sugerencia del lector:* establecer un formulario y anclar a esta política)
 
 ### 2.7 Prohibición de secretos en código
 
 Las contraseñas, llaves y tokens deben almacenarse en Secret Manager o una bóveda aprobada. No deben almacenarse en código fuente, repositorios, imágenes, archivos de configuración ni tickets.
+(*Sugerencia del lector:* ser más explícito en no enviar por email y/o whatsapp)
 
 ---
 
@@ -90,6 +93,8 @@ Incluye DBA, DevOps, desarrolladores, QA, BI/Analytics, Data Engineers, Security
 | **BI/Analytics** | Consultas, modelos y reportes | Solo lectura sobre vistas, tablas o datasets autorizados |
 | **Data Engineer** | Ingesta, transformación y operación de pipelines | Escritura controlada en capas y ambientes asignados; cambios versionados |
 | **Security/Auditor** | Revisión de logs, metadatos y controles | Solo lectura; acceso a datos sensibles únicamente si está justificado |
+
+(*Sugerencia del lector:* desarrolladores deben tener acceso solo a dev, QA solo a qa y BI y Data a dataset migrados)
 
 Nomenclatura recomendada para identidades humanas: `rol_iniciales`, por ejemplo `dba_eleo`, `dev_jperez` o `bi_agarcia`.
 
